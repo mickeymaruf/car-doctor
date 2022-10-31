@@ -1,17 +1,17 @@
 .btn-theme {
-    @apply bg-[#FF3811] border-0 text-white;
+    @apply bg-theme border-theme text-white;
 }
 
 .btn-theme:hover {
-    @apply bg-base-100 text-[#FF3811] border-[#FF3811];
+    @apply bg-transparent text-theme border-theme;
 }
 
 .btn-theme-outline {
-    @apply border-[#FF3811] text-[#FF3811] bg-transparent;
+    @apply border-theme text-theme bg-transparent;
 }
 
 .btn-theme-outline:hover {
-    @apply text-base-100 bg-[#FF3811] border-[#FF3811];
+    @apply text-base-100 bg-theme border-theme;
 }
 
 .carousel-image::after {
