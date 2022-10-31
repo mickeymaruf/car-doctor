@@ -1,0 +1,26 @@
+.btn-theme {
+    @apply bg-[#FF3811] border-0 text-white;
+}
+
+.btn-theme:hover {
+    @apply bg-base-100 text-[#FF3811] border-[#FF3811];
+}
+
+.btn-theme-outline {
+    @apply border-[#FF3811] text-[#FF3811] bg-transparent;
+}
+
+.btn-theme-outline:hover {
+    @apply text-base-100 bg-[#FF3811] border-[#FF3811];
+}
+
+.carousel-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #151515 0%, rgba(21, 21, 21, 0) 100%);
+    border-radius: 0.5rem;
+}
