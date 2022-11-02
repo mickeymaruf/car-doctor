@@ -44,8 +44,8 @@ const Carousel = () => {
             <div className="absolute top-1/2 -translate-y-1/2 left-24 text-white w-4/12">
                 <h1 className='text-6xl font-bold mb-5 leading-[1.2]'>Affordable Price For Car Servicing</h1>
                 <p className='font-thin text-xl mb-5'>There are many variations of passages of available, but the majority have suffered alteration</p>
-                <a href="#slide3" className="btn btn-theme rounded-md mr-3">Discover More</a>
-                <a href="#slide1" className="btn bg-transparent border-base-100 text-white hover:bg-base-100 hover:border-base-100 hover:text-black rounded-md">Latest Project</a>
+                <button className="btn btn-theme rounded-md mr-3">Discover More</button>
+                <button className="btn bg-transparent border-base-100 text-white hover:bg-base-100 hover:border-base-100 hover:text-black rounded-md">Latest Project</button>
             </div>
         </div>
     );

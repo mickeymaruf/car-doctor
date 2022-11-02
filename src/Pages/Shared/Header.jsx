@@ -32,7 +32,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-            <button className="btn btn-theme-outline rounded-md">Get Started</button>
+                <Link to="/auth"><button className="btn btn-theme-outline rounded-md">Get Started</button></Link>
             </div>
         </div>
     );

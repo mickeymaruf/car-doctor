@@ -4,7 +4,7 @@ import parts from '../../assets/images/about_us/parts.jpg';
 
 const About = () => {
     return (
-        <div className="flex flex-col lg:flex-row-reverse pb-28">
+        <div className="flex flex-col lg:flex-row-reverse pb-28 pt-8">
             <div className="flex-1">
                 <h3 className='text-xl font-bold text-theme'>About Us</h3>
                 <h2 className='text-5xl font-bold mt-3'>We are qualified & of experience in this field</h2>
