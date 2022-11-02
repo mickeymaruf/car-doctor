@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { BsArrowRight } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     const [services, setServices] = useState([]);
@@ -19,9 +21,14 @@ const Services = () => {
                 {
                     services.map(service => <div key={service._id} className='p-5 border rounded-lg'>
                         <img className='rounded-lg' src={service.img} alt="" />
-                        <div>
-                            <h4 className='text-xl font-medium mt-3'>{service.title}</h4>
-                            <h5 className='text-lg font-medium mt-1 text-theme'>Price: ${service.price}</h5>
+                        <div className='flex justify-between'>
+                            <div>
+                                <h4 className='text-xl font-medium mt-3'>{service.title}</h4>
+                                <h5 className='text-lg font-medium mt-1 text-theme'>Price: ${service.price}</h5>
+                            </div>
+                            <Link to={`/checkout/${service._id}`} className='self-end bg-base-200 p-3 rounded-md'>
+                                <BsArrowRight className='w-6 h-6' />
+                            </Link>
                         </div>
                     </div>)
                 }

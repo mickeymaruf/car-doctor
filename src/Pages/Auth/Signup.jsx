@@ -22,7 +22,7 @@ const Signup = () => {
                 verifyEmail()
                     .then(() => {
                         toast.success('A verification mail has been sent!');
-                        navigate('/login');
+                        navigate('/auth');
                     })
                     .catch(error => {
                         console.log(error);

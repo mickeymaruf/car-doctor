@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import app from '../firebase/firebase.config';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendEmailVerification, onAuthStageChange } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendEmailVerification, onAuthStateChanged  } from 'firebase/auth';
 
 const AuthContext = createContext();
 const auth = getAuth(app);
@@ -19,14 +19,14 @@ const AuthProvider = ({ children }) => {
     const verifyEmail = () => {
         return sendEmailVerification(auth.currentUser)
     }
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStageChange(auth, currentUser => {
-
-    //     });
-    //     return () => {
-    //         unsubscribe()
-    //     };
-    // }, [])
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged (auth, currentUser => {
+            setUser(currentUser);
+        });
+        return () => {
+            unsubscribe()
+        };
+    }, [])
     const value = {
         user,
         login,
