@@ -60,7 +60,7 @@ const Signup = () => {
                         <button className="btn btn-theme">Sign Up</button>
                     </div>
                 </form>
-                <p className='text-center mt-5'>Have an account <Link className='underline text-theme' to="/login">Login</Link></p>
+                <p className='text-center mt-5'>Have an account <Link className='underline text-theme' to="/auth">Login</Link></p>
             </div>
         </div>
     );
