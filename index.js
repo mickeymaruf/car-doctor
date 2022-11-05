@@ -66,7 +66,7 @@ const run = async () => {
         })
         app.post('/orders', verifyJWT, async (req, res) => {
             const order = req.body;
-            order['status'] = 'pending';
+            order.status = 'pending';
             const result = await orderCollection.insertOne(order);
             res.send(result);
         })
