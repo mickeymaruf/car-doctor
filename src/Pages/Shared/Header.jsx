@@ -1,16 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
+import { useAuth } from '../../contexts/AuthProvider';
 
 const Header = () => {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
     const menuItems = <>
         <li className='hover:text-theme'><Link to="/">Home</Link></li>
-        <li className='hover:text-theme'><Link to="/">About</Link></li>
+        {
+            user && <li className='hover:text-theme'><Link to="/orders">Orders</Link></li>
+        }
         <li className='hover:text-theme'><Link to="/">Services</Link></li>
         <li className='hover:text-theme'><Link to="/">Blog</Link></li>
         <li className='hover:text-theme'><Link to="/">Contact</Link></li>
     </>
-
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                navigate("/auth");
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
     return (
         <div className="navbar bg-base-100 py-7">
             <div className="navbar-start">
@@ -32,7 +44,19 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/auth"><button className="btn btn-theme-outline rounded-md">Get Started</button></Link>
+                {
+                    user?.email ?
+                        <>
+                            <div className="avatar online">
+                                <div className="w-10 rounded-full">
+                                    <img src="https://placeimg.com/192/192/people" alt='' />
+                                </div>
+                            </div>
+                            <button onClick={handleLogout} className="btn btn-theme-outline rounded-md ml-3">Logout</button>
+                        </>
+                        :
+                        <Link to="/auth"><button className="btn btn-theme-outline rounded-md">Get Started</button></Link>
+                }
             </div>
         </div>
     );

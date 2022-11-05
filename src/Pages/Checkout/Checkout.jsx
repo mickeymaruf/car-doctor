@@ -1,10 +1,12 @@
 import React from 'react';
-import { json, useLoaderData } from 'react-router-dom';
+import { json, useLoaderData, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
 
 const Checkout = () => {
-    const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const { register, handleSubmit, reset } = useForm();
     const service = useLoaderData();
     const { title, img, price } = service;
     const { user } = useAuth();
@@ -19,18 +21,24 @@ const Checkout = () => {
             service: service._id,
             customer: data
         }
+        reset();
         fetch('http://localhost:5000/orders', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('genius-car-token')}`
             },
             body: JSON.stringify(order)
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
-                    e.target.reset();
-                    // toast
+                if (data.acknowledged) {
+                    Swal.fire(
+                        'Order Placed!',
+                        `${service.title}`,
+                        'success'
+                    )
+                    navigate('/orders');
                 }
             })
             .catch(error => console.log(error));

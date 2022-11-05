@@ -6,13 +6,14 @@ import Signup from "../Pages/Auth/Signup";
 import Checkout from "../Pages/Checkout/Checkout";
 import Home from "../Pages/Home/Home";
 import Orders from "../Pages/Orders/Orders";
+import RequireAuth from "./RequireAuth";
 
 const router = createBrowserRouter([
     {
         path: '/', element: <Root />, children: [
             { path: '/', element: <Home /> },
-            { path: 'checkout/:_id', element: <Checkout />, loader: ({ params }) => fetch(`http://localhost:5000/services/${params._id}`) },
-            { path: 'orders', element: <Orders />}
+            { path: 'checkout/:_id', element: <RequireAuth><Checkout /></RequireAuth>, loader: ({ params }) => fetch(`http://localhost:5000/services/${params._id}`) },
+            { path: 'orders', element: <RequireAuth><Orders /></RequireAuth> }
         ]
     },
     {

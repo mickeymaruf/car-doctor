@@ -1,18 +1,36 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
 
 const Login = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         login(email, password)
-            .then((userCredential) => {
-                navigate('/');
+            .then(userCredential => {
+                const currentUser = {
+                    email: userCredential.user.email
+                }
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('genius-car-token', data.token);
+                        navigate(from, { replace: true });
+                    })
             })
             .catch((error) => {
                 toast.error(error.message);
