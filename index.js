@@ -41,7 +41,21 @@ const run = async () => {
         })
         // services
         app.get('/services', async (req, res) => {
-            const cursor = serviceCollection.find({});
+            const order = req.query.order;
+            const range = req.query.range;
+            const search = req.query.search;
+            // const query = range ? { price: { $lt: +range } } : {
+            //     $and: [
+            //         { price: 20 },
+            //         { title: "Engine Oil Change" }
+            //     ]
+            // };
+            // const query = { title: { $regex: search, $options: "i" } };
+            let query = {};
+            if (search.length > 0) {
+                query = { $text: { $search: search, $caseSensitive: false } };
+            }
+            const cursor = serviceCollection.find(query).sort({ price: order === 'asc' ? 1 : -1 });
             services = await cursor.toArray();
             res.send(services);
         })
