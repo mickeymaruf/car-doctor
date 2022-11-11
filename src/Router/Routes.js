@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     {
         path: '/', element: <Root />, children: [
             { path: '/', element: <Home /> },
-            { path: 'checkout/:_id', element: <RequireAuth><Checkout /></RequireAuth>, loader: ({ params }) => fetch(`http://localhost:5000/services/${params._id}`) },
+            { path: 'checkout/:_id', element: <RequireAuth><Checkout /></RequireAuth>, loader: ({ params }) => fetch(`https://genius-car-server-rho-azure.vercel.app/services/${params._id}`) },
             { path: 'orders', element: <RequireAuth><Orders /></RequireAuth> }
         ]
     },

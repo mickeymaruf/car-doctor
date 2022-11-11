@@ -19,7 +19,7 @@ const Login = () => {
                     email: userCredential.user.email
                 }
                 // get jwt token
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://genius-car-server-rho-azure.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

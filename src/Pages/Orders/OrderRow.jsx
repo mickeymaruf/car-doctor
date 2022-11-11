@@ -6,13 +6,13 @@ const OrderRow = ({ order, setOrders }) => {
     const [service, setService] = useState({});
     const [status, setStatus] = useState(order.status);
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${order.service}`)
+        fetch(`https://genius-car-server-rho-azure.vercel.app/services/${order.service}`)
             .then(res => res.json())
             .then(data => setService(data))
             .catch(error => console.log(error));
     }, [order.service])
     const handleDeleteOrder = () => {
-        fetch(`http://localhost:5000/orders/${order._id}`, {
+        fetch(`https://genius-car-server-rho-azure.vercel.app/orders/${order._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('genius-car-token')}`
@@ -32,7 +32,7 @@ const OrderRow = ({ order, setOrders }) => {
             .catch(error => console.log(error));
     }
     const confirmOrder = () => {
-        fetch(`http://localhost:5000/orders/${order._id}`, {
+        fetch(`https://genius-car-server-rho-azure.vercel.app/orders/${order._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
